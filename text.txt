@@ -1,0 +1,28 @@
+
+// To Edit type Attachment File 
+/home/big/github/BookStack/app/Uploads/AttachmentService.php -> getFileValidationRules()
+
+// To Edit type Image File 
+/home/big/github/BookStack/app/Http/Controller.php -> getImageValidationRules()
+
+// Search
+- resources/views/search/parts/all.blade.php
+- routes/web.php ->  Route::get('/search', [SearchController::class, 'search']);
+- app/Search/SearchController
+- app/Search/SearchRunner -> searchEntities -> กรอง Type -> buildQuery -> applyTermSearch
+    คำนวน ความถี่ ของคำนั้น ไปปรับคะเเนน เพื่อเพิ่มน้ำหนักให้กับคำค้นหาที่หายากและลดน้ำหนักของคำค้นหาที่พบได้บ่อย
+    มันก็จะได้คำที่บอก ความหายาก ของ คำนั้น เอาไปหา ใน search_terms เอา sum(คะเเนนความหายาก * score)+
+    [ คำที่หายาก จะถูกให้คะแนนมากกว่า และถูกจัดลำดับอยู่ในอันดับต้น ๆ ของผลลัพธ์ก่อนคำที่พบได้ทั่วไปมาก ๆ ]
+    -> ได้ SQl ที่จัดลำดับตาม ด้วยคำธรรมดา 
+
+    Exact Term Matching -> การเจาะจงคำที่ต้องการค้นหาเพิ่มด้วย เอา SQL มา where คำที่ต้องการ Exact เพื่อเพิ่มน้ำหนักให้กับคำค้นหาที่หายากและลดน้ำหนักของคำค้นหาที่พบได้บ่อย
+
+    Tag -> [name,operator,value] -> where name = name , ['<=', '>=', '=', '<', '>', 'like', '!=']
+
+    Filter -> กรองตามที่ติ๊กมา 
+
+    
+
+
+
+
