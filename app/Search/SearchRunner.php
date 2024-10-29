@@ -491,6 +491,9 @@ class SearchRunner
 
     public function saveSearchHistory($searchTerm)
     {
+        if (trim($searchTerm) === '') {
+            return; 
+        }
         $existingHistory = SearchHistory::where('user_id', user()->id)
         ->where('search_term', $searchTerm)
         ->first();

@@ -126,8 +126,6 @@ class SearchController extends Controller
         foreach ($entities as $entity) {
             $entity->setAttribute('preview_content', '');
         }
-        Log::info($entities);
-
         return view('search.parts.entity-suggestion-list', [
             'entities' => $entities->slice(0, 5)
         ]);
@@ -159,9 +157,8 @@ class SearchController extends Controller
         foreach ($entities as $entity) {
             $entity->setAttribute('preview_content', '');
         }
-        Log::info($entities);
 
-        return view('search.parts.entity-history-list', ['entities' => $entities]);
+        return view('search.parts.entity-history-list', ['entities' => $entities->slice(0, 10)]);
 
     }
 

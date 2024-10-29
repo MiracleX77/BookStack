@@ -68,6 +68,8 @@ return [
     'deleted_user' => 'Deleted User',
     'no_activity' => 'No activity to show',
     'no_items' => 'No items available',
+    // ถ้าหาไม่เจอลองใช้ "" ครอบคำที่ต้องการหาเเทน
+    'no_items_suggest' => 'if you can\'t find what you\'re looking for, try searching ":word" instead',
     'back_to_top' => 'Back to top',
     'skip_to_main_content' => 'Skip to main content',
     'toggle_details' => 'Toggle Details',

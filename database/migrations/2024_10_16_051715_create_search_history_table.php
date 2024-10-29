@@ -12,13 +12,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('search_history', function (Blueprint $table) {
-            $table->increments('id'); // Primary key
-            $table->unsignedInteger('user_id'); // ID ของผู้ใช้งาน
-            $table->string('search_term'); // คำค้นหาที่ใช้
+            $table->increments('id'); 
+            $table->unsignedInteger('user_id'); 
+            $table->string('search_term'); 
             $table->timestamp('searched_at')->default(DB::raw('CURRENT_TIMESTAMP')); // เวลาที่ค้นหา
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps(); // created_at, updated_at
+            $table->timestamps(); 
         });
     }
 

@@ -31,12 +31,16 @@ export class GlobalSearch extends Component {
         this.input.addEventListener('input', () => {
             const {value} = this.input;
             if (value.length > 0) {
+                this.suggestionResultsWrap.style.display='block';
                 this.suggestions.style.display = 'block';
                 this.loadingWrap.style.display = 'block';
                 this.suggestions.style.opacity = '1';
                 this.suggestionResultsWrap.style.opacity = '0.5';
                 updateSuggestionsDebounced(value);
             } else {
+                this.searchHistoryResultsWrap.style.display = 'block';
+                this.suggestionResultsWrap.style.display = 'none';
+                this.loadingWrap.style.display = 'none';
                 updateSearchHistoryDebounced();
             }
         });
@@ -51,11 +55,10 @@ export class GlobalSearch extends Component {
         this.input.addEventListener('focus', () => {
             this.container.classList.add('search-active');
             this.searchHistoryWrap.style.display = 'block';
+            this.searchHistoryResultsWrap.style.display = 'block';
             this.suggestions.style.display = 'none';
             this.searchHistoryWrap.style.opacity = '1';
-            if (this.input.value.length === 0) {
-                updateSearchHistoryDebounced();
-            }
+            updateSearchHistoryDebounced();
         });
 
         new KeyboardNavigationHandler(this.container, () => {
@@ -105,6 +108,8 @@ export class GlobalSearch extends Component {
         this.container.classList.remove('search-active');
         this.suggestions.classList.remove('search-suggestions-animation');
         this.suggestionResultsWrap.innerHTML = '';
+        this.searchHistoryResultsWrap.innerHTML='';
+        this.searchHistoryResultsWrap.style.display='none';
     }
 
     async getSearchHistory() {

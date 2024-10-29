@@ -17,5 +17,8 @@
         <div class="text-muted px-m py-m">
             {{ trans('common.no_items') }}
         </div>
+        <div class="text-muted px-m py-m">
+            {{ trans('common.no_items_suggest') }}
+        </div>
     @endif
 </div>

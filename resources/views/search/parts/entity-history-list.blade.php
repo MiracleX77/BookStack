@@ -1,5 +1,9 @@
 <div class="entity-list">
+
     @if(count($entities) > 0)
+        <div class="card-title" style="padding:0px;padding-inline-start:8px;padding-inline-end:8px;">
+            Recently Search
+        </div>
         @foreach($entities as $entity)
             <div class="entity-item">
                 <!-- เปลี่ยน search_term ให้เป็นลิงก์ -->
@@ -14,8 +18,8 @@
             </div>
         @endforeach
     @else
-        <div class="text-muted px-m py-m">
-            {{ trans('common.no_items') }}
+        <div class="text-muted px-s py-s">
+            No Recently Search
         </div>
     @endif
 </div>

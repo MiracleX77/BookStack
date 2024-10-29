@@ -192,42 +192,16 @@ class SearchIndex
         $tokenMap = []; // {TextToken => OccurrenceCount}
         $splitChars = static::$delimiters;
         $token = strtok($text, $splitChars);
-        $token = trim($token);
-        
 
         while ($token !== false) {
-            if ($this->isThai($token)) {
-                $thaiWords = $this->splitThaiWords($token);
-                foreach ($thaiWords as $word) {
-                    if (!isset($tokenMap[$word])) {
-                        $tokenMap[$word] = 0;
-                    }
-                    $tokenMap[$word]++;
-                }
-            } else {
-                if (!isset($tokenMap[$token])) {
-                    $tokenMap[$token] = 0;
-                }
-                $tokenMap[$token]++;
+            if (!isset($tokenMap[$token])) {
+                $tokenMap[$token] = 0;
             }
+            $tokenMap[$token]++;
             $token = strtok($splitChars);
         }
-        
+
         return $tokenMap;
-    }
-
-    protected function isThai(string $text): bool
-    {
-        return preg_match('/[\x{0E00}-\x{0E7F}]/u', $text) > 0;
-    }
-
-    // แยกคำภาษาไทย
-    protected function splitThaiWords(string $text): array
-    {
-        // เรียกใช้ไลบรารีตัดคำภาษาไทย
-        $segment = new Segment();
-        $words = $segment->get_segment_array($text);
-        return  $words;
     }
 
     /**
