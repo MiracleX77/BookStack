@@ -60,6 +60,13 @@ export class GlobalSearch extends Component {
             this.searchHistoryWrap.style.opacity = '1';
             updateSearchHistoryDebounced();
         });
+        // Detect clicking outside input
+        document.addEventListener('click', (event) => {
+            if (!this.container.contains(event.target)) {
+                this.hideSuggestions();
+
+            }
+        });
 
         new KeyboardNavigationHandler(this.container, () => {
             this.hideSuggestions();
@@ -108,6 +115,8 @@ export class GlobalSearch extends Component {
         this.container.classList.remove('search-active');
         this.suggestions.classList.remove('search-suggestions-animation');
         this.suggestionResultsWrap.innerHTML = '';
+        this.suggestions.style.display = 'none';
+        this.suggestionResultsWrap.style.display = 'none';
         this.searchHistoryResultsWrap.innerHTML='';
         this.searchHistoryResultsWrap.style.display='none';
     }
